@@ -63,8 +63,37 @@ public class FirstTaskSolution implements FirstTask {
         return stack.size() == 0;
     }
 
+    private void operation(ArrayDeque<Integer> stack, char op) {
+        int r = stack.removeLast();
+        int l = stack.removeLast();
+        switch (op) {
+            case '+':
+                stack.addLast(l + r);
+                break;
+            case '-':
+                stack.addLast(l - r);
+                break;
+            case '*':
+                stack.addLast(l * r);
+                break;
+            case '/':
+                stack.addLast(l / r);
+                break;
+        }
+    }
+
     @Override
-    public Long polishCalculation(String s) {
-        return null;
+    public Long polishCalculation(String s) throws IllegalArgumentException {
+        String[] strArray = s.split(" ");
+        String signs = "+-*/";
+        ArrayDeque<Integer> stackNumbers = new ArrayDeque<>();
+        for (String symbol : strArray) {
+            if (signs.contains(symbol)) {
+                operation(stackNumbers, symbol.charAt(0));
+            } else {
+                stackNumbers.addLast((Integer.parseInt(symbol)));
+            }
+        }
+        return Long.parseLong(stackNumbers.getFirst().toString());
     }
 }
