@@ -94,6 +94,6 @@ public class FirstTaskSolution implements FirstTask {
                 stackNumbers.addLast((Integer.parseInt(symbol)));
             }
         }
-        return Long.parseLong(stackNumbers.getFirst().toString());
+        return Long.parseLong(stackNumbers.getLast().toString());
     }
 }
